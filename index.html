@@ -3,26 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT302 - DCCN Lab Assignment Solutions & Source Code</title>
-    <meta name="description" content="Complete C programs and empirical reports for IT302 Data Communication and Computer Networks Lab Assignment.">
+    <title>IT302 DCCN Lab Assignment Solutions & Source Code</title>
+    <meta name="description" content="Clean C programs and empirical reports for IT302 Data Communication and Computer Networks Lab Assignment.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
     <style>
         :root {
-            --bg-color: #0f172a;
-            --surface-color: #1e293b;
-            --surface-hover: #334155;
-            --border-color: #334155;
+            --bg-color: #090d16;
+            --surface-color: #131b2e;
+            --surface-card: #182238;
+            --surface-hover: #22304e;
+            --border-color: #273656;
+            --border-accent: #3b82f6;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
+            --text-muted: #64748b;
             --accent-blue: #38bdf8;
-            --accent-green: #4ade80;
+            --accent-green: #22c55e;
             --accent-purple: #c084fc;
-            --accent-amber: #fbbf24;
-            --code-bg: #090d16;
-            --sidebar-width: 320px;
+            --accent-amber: #f59e0b;
+            --code-bg: #070b12;
+            --sidebar-width: 290px;
         }
 
         * {
@@ -31,51 +34,84 @@
             padding: 0;
         }
 
+        html {
+            scroll-behavior: smooth;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-primary);
             line-height: 1.6;
-            display: flex;
+            display: grid;
+            grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
             min-height: 100vh;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }
+
+        /* Custom Modern Scrollbars - Sleek & Dark */
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #090d16;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #273656;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #38bdf8;
+        }
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: #273656 #090d16;
         }
 
         /* Sidebar Styling */
         #sidebar {
-            width: var(--sidebar-width);
-            height: 100vh;
             background-color: var(--surface-color);
             border-right: 1px solid var(--border-color);
-            position: fixed;
+            height: 100vh;
+            position: sticky;
             top: 0;
-            left: 0;
             overflow-y: auto;
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            z-index: 100;
+            z-index: 50;
         }
 
         .sidebar-header {
-            padding: 20px;
+            padding: 20px 16px 14px;
             border-bottom: 1px solid var(--border-color);
-            background: linear-gradient(180deg, rgba(30,41,59,1) 0%, rgba(15,23,42,0.8) 100%);
+            background: #0d1424;
         }
 
         .sidebar-title {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--accent-blue);
-            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         .sidebar-subtitle {
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
         }
 
         .search-box {
-            padding: 12px 16px;
+            padding: 10px 14px;
             border-bottom: 1px solid var(--border-color);
+            background: #0d1424;
         }
 
         .search-input {
@@ -85,8 +121,9 @@
             border: 1px solid var(--border-color);
             border-radius: 6px;
             color: var(--text-primary);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             outline: none;
+            transition: border-color 0.2s;
         }
 
         .search-input:focus {
@@ -95,14 +132,14 @@
 
         .nav-list {
             flex: 1;
-            padding: 10px 0;
+            padding: 8px 0 24px;
         }
 
         .unit-header {
-            padding: 12px 16px 6px;
-            font-size: 0.72rem;
+            padding: 14px 14px 4px;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             font-weight: 700;
             color: var(--accent-amber);
         }
@@ -110,13 +147,16 @@
         .nav-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 8px 16px;
+            gap: 8px;
+            padding: 7px 14px;
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             transition: all 0.15s ease;
             border-left: 3px solid transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
 
         .nav-item:hover, .nav-item.active {
@@ -126,63 +166,62 @@
         }
 
         .nav-tag {
-            font-family: 'Fira Code', monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-weight: 600;
-            font-size: 0.75rem;
-            color: var(--accent-blue);
-            background: rgba(56, 189, 248, 0.1);
-            padding: 2px 6px;
+            font-size: 0.65rem;
+            padding: 2px 5px;
             border-radius: 4px;
-            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .nav-tag-c {
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }
+
+        .nav-tag-txt {
+            background: rgba(192, 132, 252, 0.15);
+            color: var(--accent-purple);
+            border: 1px solid rgba(192, 132, 252, 0.3);
         }
 
         .nav-title {
-            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            white-space: nowrap;
         }
 
-        /* Main Content Styling */
+        /* Main Content Layout */
         #main {
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 36px 48px;
-            max-width: 1200px;
+            min-width: 0;
+            width: 100%;
+            padding: 28px 36px 64px;
+            overflow-x: hidden;
         }
 
         .hero-banner {
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            background: linear-gradient(135deg, #131b2e 0%, #0d1424 100%);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 32px;
-            margin-bottom: 36px;
+            padding: 28px 32px;
+            margin-bottom: 32px;
             position: relative;
-            overflow: hidden;
-        }
-
-        .hero-banner::before {
-            content: '';
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%);
-            border-radius: 50%;
         }
 
         .hero-title {
-            font-size: 1.85rem;
+            font-size: 1.7rem;
             font-weight: 800;
             color: #ffffff;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
         }
 
         .hero-desc {
             color: var(--text-secondary);
-            font-size: 1rem;
-            max-width: 800px;
+            font-size: 0.95rem;
             margin-bottom: 20px;
+            max-width: 900px;
         }
 
         .hero-buttons {
@@ -195,9 +234,9 @@
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 9px 16px;
+            padding: 8px 16px;
             border-radius: 6px;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s;
@@ -207,7 +246,7 @@
 
         .btn-primary {
             background-color: var(--accent-blue);
-            color: #0f172a;
+            color: #090d16;
         }
 
         .btn-primary:hover {
@@ -216,7 +255,7 @@
         }
 
         .btn-secondary {
-            background-color: var(--surface-color);
+            background-color: var(--surface-card);
             border-color: var(--border-color);
             color: var(--text-primary);
         }
@@ -227,63 +266,59 @@
 
         /* Question Cards */
         .question-card {
-            background-color: var(--surface-color);
+            background-color: var(--surface-card);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 24px;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
             scroll-margin-top: 24px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            min-width: 0;
+            max-width: 100%;
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
+            gap: 16px;
             margin-bottom: 16px;
             border-bottom: 1px solid rgba(255,255,255,0.06);
             padding-bottom: 14px;
+            flex-wrap: wrap;
         }
 
         .card-title-group {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
+            min-width: 0;
+            flex: 1;
         }
 
         .card-title {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #ffffff;
-        }
-
-        .anchor-link {
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1.1rem;
-            opacity: 0.6;
-            transition: opacity 0.2s;
-        }
-
-        .anchor-link:hover {
-            opacity: 1;
-            color: var(--accent-blue);
+            letter-spacing: -0.01em;
+            word-break: break-word;
         }
 
         .badge {
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 700;
             padding: 3px 8px;
             border-radius: 9999px;
             text-transform: uppercase;
             letter-spacing: 0.04em;
+            flex-shrink: 0;
         }
 
         .badge-c {
-            background: rgba(74, 222, 128, 0.15);
+            background: rgba(34, 197, 94, 0.15);
             color: var(--accent-green);
-            border: 1px solid rgba(74, 222, 128, 0.3);
+            border: 1px solid rgba(34, 197, 94, 0.3);
         }
 
         .badge-txt {
@@ -292,21 +327,69 @@
             border: 1px solid rgba(192, 132, 252, 0.3);
         }
 
+        .header-actions {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* Prominent Main Copy Button */
+        .main-copy-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #ffffff;
+            border: 1px solid #3b82f6;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+        }
+
+        .main-copy-btn:hover {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }
+
+        .main-copy-btn.copied {
+            background: linear-gradient(135deg, #16a34a, #15803d) !important;
+            border-color: #22c55e !important;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.4) !important;
+        }
+
+        .anchor-link {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }
+
+        .anchor-link:hover {
+            color: var(--accent-blue);
+        }
+
         .problem-box {
-            background-color: rgba(15, 23, 42, 0.6);
+            background-color: rgba(9, 13, 22, 0.7);
             border-left: 4px solid var(--accent-blue);
             padding: 12px 16px;
             border-radius: 4px;
             margin-bottom: 18px;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             color: #cbd5e1;
+            word-break: break-word;
         }
 
-        .problem-box strong {
+        .problem-label {
             color: var(--accent-blue);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
+            font-weight: 700;
             display: block;
             margin-bottom: 4px;
         }
@@ -314,23 +397,29 @@
         /* Tabs Styling */
         .tabs-container {
             margin-top: 14px;
+            min-width: 0;
+            max-width: 100%;
         }
 
         .tab-buttons-bar {
             display: flex;
-            gap: 6px;
+            gap: 4px;
             overflow-x: auto;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 12px;
             padding-bottom: 2px;
+            scrollbar-width: none;
+        }
+        .tab-buttons-bar::-webkit-scrollbar {
+            display: none;
         }
 
         .tab-btn {
             background: transparent;
             border: none;
-            color: var(--text-secondary);
-            padding: 8px 14px;
-            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 7px 14px;
+            font-size: 0.82rem;
             font-weight: 500;
             cursor: pointer;
             border-radius: 6px 6px 0 0;
@@ -353,6 +442,8 @@
 
         .tab-content {
             display: none;
+            min-width: 0;
+            max-width: 100%;
         }
 
         .tab-content.active {
@@ -363,19 +454,22 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #0b0f19;
+            background-color: #0b111e;
             padding: 8px 14px;
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
             border: 1px solid var(--border-color);
             border-bottom: none;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
+            flex-wrap: wrap;
+            gap: 8px;
         }
 
         .file-name a {
             color: var(--accent-blue);
             text-decoration: none;
-            font-family: 'Fira Code', monospace;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
         }
 
         .file-name a:hover {
@@ -384,10 +478,10 @@
 
         .code-actions {
             display: flex;
-            gap: 8px;
+            gap: 6px;
         }
 
-        .copy-btn, .download-btn {
+        .action-btn {
             background-color: var(--surface-hover);
             color: var(--text-primary);
             border: 1px solid var(--border-color);
@@ -396,12 +490,15 @@
             font-size: 0.75rem;
             cursor: pointer;
             text-decoration: none;
-            transition: background 0.15s;
+            transition: all 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }
 
-        .copy-btn:hover, .download-btn:hover {
-            background-color: var(--accent-blue);
-            color: #0f172a;
+        .action-btn:hover {
+            background-color: var(--border-accent);
+            color: #ffffff;
         }
 
         .code-block {
@@ -412,27 +509,35 @@
             padding: 16px !important;
             margin: 0 !important;
             max-height: 480px;
-            overflow-y: auto;
-            font-family: 'Fira Code', monospace !important;
-            font-size: 0.85rem !important;
+            overflow-x: auto !important;
+            overflow-y: auto !important;
+            font-family: 'JetBrains Mono', monospace !important;
+            font-size: 0.82rem !important;
+            line-height: 1.55 !important;
+            white-space: pre !important;
+            word-wrap: normal !important;
+            max-width: 100% !important;
         }
 
-        /* Toast feedback */
+        /* Toast notification */
         #toast {
             position: fixed;
             bottom: 24px;
             right: 24px;
-            background-color: var(--accent-green);
-            color: #052e16;
-            padding: 10px 18px;
-            border-radius: 6px;
+            background: linear-gradient(135deg, #15803d, #16a34a);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 8px;
             font-weight: 600;
-            font-size: 0.85rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            font-size: 0.88rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
             transform: translateY(100px);
             opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 999;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
         #toast.show {
@@ -440,24 +545,37 @@
             opacity: 1;
         }
 
-        /* Responsive */
+        /* Mobile Responsive */
         @media (max-width: 900px) {
+            body {
+                grid-template-columns: 1fr;
+            }
             #sidebar {
                 display: none;
             }
             #main {
-                margin-left: 0;
+                padding: 16px;
+            }
+            .hero-banner {
                 padding: 20px;
+            }
+            .card-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- Left Sidebar -->
+    <!-- Left Sticky Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <div class="sidebar-title">IT302 DCCN LAB</div>
+            <div class="sidebar-title">⚡ IT302 DCCN LAB</div>
             <div class="sidebar-subtitle">Assignments & Source Codes</div>
         </div>
         <div class="search-box">
@@ -467,83 +585,83 @@
             <div class="unit-header">Unit 1: Network Topology &amp; Commands</div>
 
         <a href="#q1" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q1</span>
+            <span class="nav-tag nav-tag-txt">TXT</span>
             <span class="nav-title">Q1: Lab Network Topology, Interfaces, Routers &amp; IP Pools</span>
         </a>
         
         <a href="#q2" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q2</span>
+            <span class="nav-tag nav-tag-txt">TXT</span>
             <span class="nav-title">Q2: Networking Commands (PING, TRACEROUTE), Telnet &amp; Delay</span>
         </a>
         
         <a href="#q3" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q3</span>
+            <span class="nav-tag nav-tag-txt">TXT</span>
             <span class="nav-title">Q3: Ping Tool Statistics &amp; Round-Trip Times</span>
         </a>
         
         <a href="#q4" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q4</span>
+            <span class="nav-tag nav-tag-txt">TXT</span>
             <span class="nav-title">Q4: Trace Route Path Analysis</span>
         </a>
         <div class="unit-header">Unit 2: IP Addressing &amp; Conversion</div>
 
         <a href="#q5" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q5</span>
+            <span class="nav-tag nav-tag-c">C</span>
             <span class="nav-title">Q5: IPv4 Class Determination</span>
         </a>
         
         <a href="#q6" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q6</span>
+            <span class="nav-tag nav-tag-c">C</span>
             <span class="nav-title">Q6: Dotted Decimal to 32-bit Address Translation</span>
         </a>
         <div class="unit-header">Unit 3: Data Link Layer Framing</div>
 
         <a href="#q7" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q7</span>
+            <span class="nav-tag nav-tag-c">C</span>
             <span class="nav-title">Q7: Bit Stuffing and De-stuffing</span>
         </a>
         
         <a href="#q8" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q8</span>
+            <span class="nav-tag nav-tag-c">C</span>
             <span class="nav-title">Q8: Character Stuffing and De-stuffing</span>
         </a>
         <div class="unit-header">Unit 4: Error Detection &amp; Correction</div>
 
         <a href="#q9" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q9</span>
+            <span class="nav-tag nav-tag-c">C</span>
             <span class="nav-title">Q9: Error Detection Methods</span>
         </a>
         
         <a href="#q10" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q10</span>
+            <span class="nav-tag nav-tag-c">C</span>
             <span class="nav-title">Q10: Error Correction using Hamming Code</span>
         </a>
         <div class="unit-header">Unit 5: Socket Programming &amp; HTTP</div>
 
         <a href="#q11" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q11</span>
+            <span class="nav-tag nav-tag-c">C</span>
             <span class="nav-title">Q11: Socket Programming &amp; Client-Server Model</span>
         </a>
         
         <a href="#q12" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q12</span>
+            <span class="nav-tag nav-tag-c">C</span>
             <span class="nav-title">Q12: HTTP Sockets: Web Page Upload &amp; Download</span>
         </a>
         <div class="unit-header">Unit 6: Protocol Simulations</div>
 
         <a href="#q13" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q13</span>
+            <span class="nav-tag nav-tag-c">C</span>
             <span class="nav-title">Q13: Simulation of PING &amp; TRACEROUTE Commands</span>
         </a>
         
         <a href="#q14" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q14</span>
+            <span class="nav-tag nav-tag-c">C</span>
             <span class="nav-title">Q14: DHCP Server Simulation (DORA)</span>
         </a>
         <div class="unit-header">Unit 7: Routing Algorithms</div>
 
         <a href="#q15" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">Q15</span>
+            <span class="nav-tag nav-tag-c">C</span>
             <span class="nav-title">Q15: Routing Table Implementation</span>
         </a>
         
@@ -555,18 +673,18 @@
         <header class="hero-banner">
             <h1 class="hero-title">IT302 — Data Communication & Computer Networks</h1>
             <p class="hero-desc">
-                Interactive laboratory portal containing complete C source code implementations, 
-                measured network statistics (PING, Traceroute), and study reports.
+                Laboratory assignment solutions portal with short, crisp C source code implementations, 
+                empirical networking statistics (PING, Traceroute), and study reports.
             </p>
             <div class="hero-buttons">
                 <a href="https://github.com/Aryan9891/DCCN-Lab-repo" target="_blank" class="btn btn-primary">
-                    ⭐ View on GitHub
+                    ⭐ GitHub Repository
                 </a>
                 <a href="IT302 DCCNLAB ASSIGNMENT.pdf" target="_blank" class="btn btn-secondary">
-                    📄 Original Assignment PDF
+                    📄 Assignment PDF
                 </a>
                 <a href="README.md" target="_blank" class="btn btn-secondary">
-                    📋 README & Guide
+                    📋 README Guide
                 </a>
             </div>
         </header>
@@ -579,11 +697,16 @@
                     <span class="badge badge-txt">Theory / Study</span>
                     <h2 class="card-title">Q1: Lab Network Topology, Interfaces, Routers &amp; IP Pools</h2>
                 </div>
-                <a href="#q1" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q1', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q1" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>1. To familiarize with the Lab Network Topology, Locating different interfaces, routers and switches. Studying different pools of IP addresses.</p>
             </div>
 
@@ -600,8 +723,10 @@
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q1_Lab_Network_Topology.txt" target="_blank">Q1_Lab_Network_Topology.txt</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q1_content_0_code')">📋 Copy</button>
-                        <a href="Q1_Lab_Network_Topology.txt" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q1_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q1_Lab_Network_Topology.txt" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q1_content_0_code" class="language-none">================================================================================
@@ -717,11 +842,16 @@ C. Special and Reserved IP Pools:
                     <span class="badge badge-txt">Theory / Experimental</span>
                     <h2 class="card-title">Q2: Networking Commands (PING, TRACEROUTE), Telnet &amp; Delay</h2>
                 </div>
-                <a href="#q2" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q2', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q2" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>2. To learn and observe the usage of different networking commands e.g. PING, TRACEROUTE. Learning remote login using telnet session. Measuring typical average delays between different locations of the network.</p>
             </div>
 
@@ -738,8 +868,10 @@ C. Special and Reserved IP Pools:
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q2_Networking_Commands_and_Delays.txt" target="_blank">Q2_Networking_Commands_and_Delays.txt</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q2_content_0_code')">📋 Copy</button>
-                        <a href="Q2_Networking_Commands_and_Delays.txt" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q2_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q2_Networking_Commands_and_Delays.txt" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q2_content_0_code" class="language-none">================================================================================
@@ -844,11 +976,16 @@ B. Typical Empirical Latency Profiles Measured:
                     <span class="badge badge-txt">Measurements</span>
                     <h2 class="card-title">Q3: Ping Tool Statistics &amp; Round-Trip Times</h2>
                 </div>
-                <a href="#q3" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q3', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q3" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>3. &quot;Ping&quot; is a tool used to determine if a server is responding and to estimate the round trip time of a message sent to that server. Use the ping command for the following URLs and record the success or failure statistics along with the average round trip time:<br> a) google.com   b) facebook.com   c) bitmesra.ac.in</p>
             </div>
 
@@ -856,19 +993,19 @@ B. Typical Empirical Latency Profiles Measured:
                 <div class="tab-buttons-bar">
                     
             <button class="tab-btn active" onclick="switchTab('q3', 0)">
-                Consolidated Ping Statistics &amp; Comparison
+                All Ping Statistics
             </button>
             
             <button class="tab-btn " onclick="switchTab('q3', 1)">
-                3.1 Ping google.com
+                3.1 google.com
             </button>
             
             <button class="tab-btn " onclick="switchTab('q3', 2)">
-                3.2 Ping facebook.com
+                3.2 facebook.com
             </button>
             
             <button class="tab-btn " onclick="switchTab('q3', 3)">
-                3.3 Ping bitmesra.ac.in
+                3.3 bitmesra.ac.in
             </button>
             
                 </div>
@@ -877,8 +1014,10 @@ B. Typical Empirical Latency Profiles Measured:
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q3_Ping_Statistics.txt" target="_blank">Q3_Ping_Statistics.txt</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q3_content_0_code')">📋 Copy</button>
-                        <a href="Q3_Ping_Statistics.txt" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q3_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q3_Ping_Statistics.txt" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q3_content_0_code" class="language-none">================================================================================
@@ -991,8 +1130,10 @@ Observations:
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q3_1_Ping_Google.txt" target="_blank">Q3_1_Ping_Google.txt</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q3_content_1_code')">📋 Copy</button>
-                        <a href="Q3_1_Ping_Google.txt" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q3_content_1_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q3_1_Ping_Google.txt" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q3_content_1_code" class="language-none">================================================================================
@@ -1025,8 +1166,10 @@ STATISTICS:
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q3_2_Ping_Facebook.txt" target="_blank">Q3_2_Ping_Facebook.txt</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q3_content_2_code')">📋 Copy</button>
-                        <a href="Q3_2_Ping_Facebook.txt" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q3_content_2_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q3_2_Ping_Facebook.txt" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q3_content_2_code" class="language-none">================================================================================
@@ -1059,8 +1202,10 @@ STATISTICS:
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q3_3_Ping_BitMesra.txt" target="_blank">Q3_3_Ping_BitMesra.txt</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q3_content_3_code')">📋 Copy</button>
-                        <a href="Q3_3_Ping_BitMesra.txt" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q3_content_3_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q3_3_Ping_BitMesra.txt" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q3_content_3_code" class="language-none">================================================================================
@@ -1098,11 +1243,16 @@ STATISTICS:
                     <span class="badge badge-txt">Measurements</span>
                     <h2 class="card-title">Q4: Trace Route Path Analysis</h2>
                 </div>
-                <a href="#q4" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q4', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q4" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>4. Trace the route that is taken when you try to access:<br> a) google.com   b) facebook.com   c) bitmesra.ac.in</p>
             </div>
 
@@ -1110,19 +1260,19 @@ STATISTICS:
                 <div class="tab-buttons-bar">
                     
             <button class="tab-btn active" onclick="switchTab('q4', 0)">
-                Consolidated Traceroute Path Analysis
+                All Route Traces
             </button>
             
             <button class="tab-btn " onclick="switchTab('q4', 1)">
-                4.1 Trace Route google.com
+                4.1 google.com
             </button>
             
             <button class="tab-btn " onclick="switchTab('q4', 2)">
-                4.2 Trace Route facebook.com
+                4.2 facebook.com
             </button>
             
             <button class="tab-btn " onclick="switchTab('q4', 3)">
-                4.3 Trace Route bitmesra.ac.in
+                4.3 bitmesra.ac.in
             </button>
             
                 </div>
@@ -1131,8 +1281,10 @@ STATISTICS:
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q4_Trace_Route.txt" target="_blank">Q4_Trace_Route.txt</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q4_content_0_code')">📋 Copy</button>
-                        <a href="Q4_Trace_Route.txt" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q4_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q4_Trace_Route.txt" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q4_content_0_code" class="language-none">================================================================================
@@ -1231,8 +1383,10 @@ Trace complete.
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q4_1_Trace_Google.txt" target="_blank">Q4_1_Trace_Google.txt</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q4_content_1_code')">📋 Copy</button>
-                        <a href="Q4_1_Trace_Google.txt" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q4_content_1_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q4_1_Trace_Google.txt" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q4_content_1_code" class="language-none">================================================================================
@@ -1263,8 +1417,10 @@ Result: Trace completed successfully in 7 hops. Average latency: ~38 ms.
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q4_2_Trace_Facebook.txt" target="_blank">Q4_2_Trace_Facebook.txt</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q4_content_2_code')">📋 Copy</button>
-                        <a href="Q4_2_Trace_Facebook.txt" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q4_content_2_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q4_2_Trace_Facebook.txt" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q4_content_2_code" class="language-none">================================================================================
@@ -1298,8 +1454,10 @@ Result: Trace reached Meta infrastructure edge in 9 active hops. Average latency
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q4_3_Trace_BitMesra.txt" target="_blank">Q4_3_Trace_BitMesra.txt</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q4_content_3_code')">📋 Copy</button>
-                        <a href="Q4_3_Trace_BitMesra.txt" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q4_content_3_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q4_3_Trace_BitMesra.txt" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q4_content_3_code" class="language-none">================================================================================
@@ -1338,11 +1496,16 @@ Result: Trace completed over international transit carriers in 10 hops. Average 
                     <span class="badge badge-c">C Code</span>
                     <h2 class="card-title">Q5: IPv4 Class Determination</h2>
                 </div>
-                <a href="#q5" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q5', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q5" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>5. Write a C/C++ program to determine if the IP address is in Class A, B, C, D, or E.</p>
             </div>
 
@@ -1359,8 +1522,10 @@ Result: Trace completed over international transit carriers in 10 hops. Average 
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q5_IP_Class_Determination.c" target="_blank">Q5_IP_Class_Determination.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q5_content_0_code')">📋 Copy</button>
-                        <a href="Q5_IP_Class_Determination.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q5_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q5_IP_Class_Determination.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q5_content_0_code" class="language-c">/*
@@ -1423,11 +1588,16 @@ int main(void) {
                     <span class="badge badge-c">C Code</span>
                     <h2 class="card-title">Q6: Dotted Decimal to 32-bit Address Translation</h2>
                 </div>
-                <a href="#q6" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q6', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q6" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>6. Write a C/C++ program to translate dotted decimal IP address into 32 bit address.</p>
             </div>
 
@@ -1444,8 +1614,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q6_Dotted_Decimal_To_32Bit.c" target="_blank">Q6_Dotted_Decimal_To_32Bit.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q6_content_0_code')">📋 Copy</button>
-                        <a href="Q6_Dotted_Decimal_To_32Bit.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q6_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q6_Dotted_Decimal_To_32Bit.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q6_content_0_code" class="language-c">/*
@@ -1504,11 +1676,16 @@ int main(void) {
                     <span class="badge badge-c">C Code</span>
                     <h2 class="card-title">Q7: Bit Stuffing and De-stuffing</h2>
                 </div>
-                <a href="#q7" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q7', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q7" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>7. Write a C/C++ program to perform bit stuffing and de-stuffing.</p>
             </div>
 
@@ -1525,8 +1702,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q7_Bit_Stuffing_Destuffing.c" target="_blank">Q7_Bit_Stuffing_Destuffing.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q7_content_0_code')">📋 Copy</button>
-                        <a href="Q7_Bit_Stuffing_Destuffing.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q7_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q7_Bit_Stuffing_Destuffing.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q7_content_0_code" class="language-c">/*
@@ -1615,11 +1794,16 @@ int main(void) {
                     <span class="badge badge-c">C Code</span>
                     <h2 class="card-title">Q8: Character Stuffing and De-stuffing</h2>
                 </div>
-                <a href="#q8" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q8', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q8" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>8. Write a C/C++ program to perform character stuffing and de-stuffing.</p>
             </div>
 
@@ -1636,8 +1820,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q8_Character_Stuffing_Destuffing.c" target="_blank">Q8_Character_Stuffing_Destuffing.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q8_content_0_code')">📋 Copy</button>
-                        <a href="Q8_Character_Stuffing_Destuffing.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q8_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q8_Character_Stuffing_Destuffing.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q8_content_0_code" class="language-c">/*
@@ -1735,11 +1921,16 @@ int main(void) {
                     <span class="badge badge-c">C Code (4 Methods)</span>
                     <h2 class="card-title">Q9: Error Detection Methods</h2>
                 </div>
-                <a href="#q9" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q9', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q9" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>9. Write a C/C++ program to perform error detection method using:<br> - Single parity checking method<br> - Two dimension parity checking method<br> - Cyclic redundancy check (CRC) method<br> - Internet checksum method</p>
             </div>
 
@@ -1747,19 +1938,19 @@ int main(void) {
                 <div class="tab-buttons-bar">
                     
             <button class="tab-btn active" onclick="switchTab('q9', 0)">
-                9.1 Single Parity Check (Even / Odd)
+                9.1 Single Parity
             </button>
             
             <button class="tab-btn " onclick="switchTab('q9', 1)">
-                9.2 Two-Dimensional Parity Check (LRC &amp; VRC)
+                9.2 2D Parity (LRC)
             </button>
             
             <button class="tab-btn " onclick="switchTab('q9', 2)">
-                9.3 Cyclic Redundancy Check (Modulo-2 XOR)
+                9.3 CRC (Modulo-2 XOR)
             </button>
             
             <button class="tab-btn " onclick="switchTab('q9', 3)">
-                9.4 Internet Checksum (RFC 1071)
+                9.4 Internet Checksum
             </button>
             
                 </div>
@@ -1768,8 +1959,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q9_1_Single_Parity.c" target="_blank">Q9_1_Single_Parity.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q9_content_0_code')">📋 Copy</button>
-                        <a href="Q9_1_Single_Parity.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q9_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q9_1_Single_Parity.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q9_content_0_code" class="language-c">/*
@@ -1845,8 +2038,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q9_2_Two_Dimension_Parity.c" target="_blank">Q9_2_Two_Dimension_Parity.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q9_content_1_code')">📋 Copy</button>
-                        <a href="Q9_2_Two_Dimension_Parity.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q9_content_1_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q9_2_Two_Dimension_Parity.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q9_content_1_code" class="language-c">/*
@@ -1961,8 +2156,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q9_3_CRC.c" target="_blank">Q9_3_CRC.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q9_content_2_code')">📋 Copy</button>
-                        <a href="Q9_3_CRC.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q9_content_2_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q9_3_CRC.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q9_content_2_code" class="language-c">/*
@@ -2053,8 +2250,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q9_4_Internet_Checksum.c" target="_blank">Q9_4_Internet_Checksum.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q9_content_3_code')">📋 Copy</button>
-                        <a href="Q9_4_Internet_Checksum.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q9_content_3_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q9_4_Internet_Checksum.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q9_content_3_code" class="language-c">/*
@@ -2138,11 +2337,16 @@ int main(void) {
                     <span class="badge badge-c">C Code</span>
                     <h2 class="card-title">Q10: Error Correction using Hamming Code</h2>
                 </div>
-                <a href="#q10" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q10', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q10" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>10. Write a C/C++ program to perform error correction using Hamming code method.</p>
             </div>
 
@@ -2159,8 +2363,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q10_Hamming_Code.c" target="_blank">Q10_Hamming_Code.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q10_content_0_code')">📋 Copy</button>
-                        <a href="Q10_Hamming_Code.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q10_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q10_Hamming_Code.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q10_content_0_code" class="language-c">/*
@@ -2234,14 +2440,19 @@ int main(void) {
         <section id="q11" class="question-card">
             <div class="card-header">
                 <div class="card-title-group">
-                    <span class="badge badge-txt">Study &amp; C Code</span>
+                    <span class="badge badge-c">Study &amp; C Code</span>
                     <h2 class="card-title">Q11: Socket Programming &amp; Client-Server Model</h2>
                 </div>
-                <a href="#q11" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q11', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q11" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>11. Study and implement model for Socket Programming and Client - Server model.</p>
             </div>
 
@@ -2249,115 +2460,30 @@ int main(void) {
                 <div class="tab-buttons-bar">
                     
             <button class="tab-btn active" onclick="switchTab('q11', 0)">
-                Socket Programming Lifecycle &amp; Theory
+                11.1 TCP Server
             </button>
             
             <button class="tab-btn " onclick="switchTab('q11', 1)">
-                11.1 TCP Socket Server (Cross-platform)
+                11.2 TCP Client
             </button>
             
             <button class="tab-btn " onclick="switchTab('q11', 2)">
-                11.2 TCP Socket Client (Cross-platform)
+                Socket Theory &amp; Architecture
             </button>
             
                 </div>
                 
             <div id="q11_content_0" class="tab-content active">
                 <div class="code-header">
-                    <span class="file-name">📄 <a href="Q11_Socket_Programming_Model.txt" target="_blank">Q11_Socket_Programming_Model.txt</a></span>
-                    <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q11_content_0_code')">📋 Copy</button>
-                        <a href="Q11_Socket_Programming_Model.txt" download class="download-btn">⬇ Download</a>
-                    </div>
-                </div>
-                <pre class="code-block"><code id="q11_content_0_code" class="language-none">================================================================================
-IT302 - DATA COMMUNICATION AND COMPUTER NETWORKS LAB
-QUESTION 11: STUDY AND IMPLEMENTATION OF SOCKET PROGRAMMING &amp; CLIENT-SERVER MODEL
-================================================================================
-
-11.1 INTRODUCTION TO SOCKET PROGRAMMING
-----------------------------------------
-A socket is an endpoint for bidirectional, inter-process communication (IPC) across an 
-IP network. A network socket is bound to a combination of an **IP Address** and a **Port Number** 
-(e.g., `127.0.0.1:8080`).
-
-Sockets operate in two primary modes:
-1. **Stream Sockets (`SOCK_STREAM`)**: Based on TCP (Transmission Control Protocol). Connection-oriented, 
-   reliable, ordered, and error-checked byte stream delivery.
-2. **Datagram Sockets (`SOCK_DGRAM`)**: Based on UDP (User Datagram Protocol). Connectionless, 
-   unreliable, minimal overhead, message-boundary preserving.
-
-
-11.2 TCP CLIENT-SERVER ARCHITECTURE WORKFLOW
----------------------------------------------
-
-         SERVER                                          CLIENT
-   ------------------                             -------------------
-     socket()                                           socket()
-        |                                                  |
-      bind()                                               |
-        |                                                  |
-     listen()                                              |
-        |                                                  |
-     accept()  &lt;---------- [SYN: Connection Request] ---- connect()
-        |     ---------- [SYN-ACK: Acknowledgment] -------&gt;|
-        |     &lt;---------- [ACK: Connection Established] ---|
-        |                                                  |
-     recv()    &lt;---------- [Data Request] ----------------- send()
-        |                                                  |
-     send()    ---------- [Data Response] ----------------&gt; recv()
-        |                                                  |
-     close()   &lt;---------- [FIN / Close] ------------------ close()
-
-
-11.3 CORE SOCKET SYSTEM CALL PRIMITIVES (C API)
-------------------------------------------------
-1. `socket(int domain, int type, int protocol)`:
-   - Creates an unbound network socket descriptor.
-   - Example: `int fd = socket(AF_INET, SOCK_STREAM, 0);` (IPv4, TCP).
-
-2. `bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)`:
-   - Assigns a local IP address and port number to the socket.
-   - Used by servers to listen on a well-known port.
-
-3. `listen(int sockfd, int backlog)`:
-   - Marks the socket as passive (ready to accept incoming client connections).
-   - `backlog`: Maximum number of pending connections queued.
-
-4. `accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)`:
-   - Blocks until an incoming connection arrives.
-   - Extracts first connection from queue and returns a NEW active connected socket descriptor.
-
-5. `connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen)`:
-   - Invoked by the client to initiate the 3-Way TCP handshake with the server.
-
-6. `send()` / `recv()` (or `write()` / `read()`):
-   - Transmits and receives data buffers over the established TCP byte stream.
-
-7. `close()` (or `closesocket()` on Windows):
-   - Terminates socket connection and releases OS descriptor resources.
-
-
-11.4 SOURCE CODE IMPLEMENTATION
---------------------------------
-The corresponding C source code files are provided:
-- `Q11_1_Socket_Server.c`: Standalone TCP Server that listens on port 8080 and replies to client.
-- `Q11_2_Socket_Client.c`: Standalone TCP Client that connects to 127.0.0.1:8080 and exchanges data.
-Both files include cross-platform support (Linux POSIX &amp; Windows Winsock).
-================================================================================
-
-</code></pre>
-            </div>
-            
-            <div id="q11_content_1" class="tab-content ">
-                <div class="code-header">
                     <span class="file-name">📄 <a href="Q11_1_Socket_Server.c" target="_blank">Q11_1_Socket_Server.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q11_content_1_code')">📋 Copy</button>
-                        <a href="Q11_1_Socket_Server.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q11_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q11_1_Socket_Server.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
-                <pre class="code-block"><code id="q11_content_1_code" class="language-c">/*
+                <pre class="code-block"><code id="q11_content_0_code" class="language-c">/*
  * IT302 DCCN Lab - Question 11.1
  * Implementation of TCP Socket Server (Client - Server Model)
  * Listens on port 8080, receives a message from the client, and sends a reply.
@@ -2464,15 +2590,17 @@ int main(void) {
 </code></pre>
             </div>
             
-            <div id="q11_content_2" class="tab-content ">
+            <div id="q11_content_1" class="tab-content ">
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q11_2_Socket_Client.c" target="_blank">Q11_2_Socket_Client.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q11_content_2_code')">📋 Copy</button>
-                        <a href="Q11_2_Socket_Client.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q11_content_1_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q11_2_Socket_Client.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
-                <pre class="code-block"><code id="q11_content_2_code" class="language-c">/*
+                <pre class="code-block"><code id="q11_content_1_code" class="language-c">/*
  * IT302 DCCN Lab - Question 11.2
  * Implementation of TCP Socket Client (Client - Server Model)
  * Connects to server on 127.0.0.1:8080, sends a message, and reads the reply.
@@ -2562,6 +2690,95 @@ int main(void) {
 </code></pre>
             </div>
             
+            <div id="q11_content_2" class="tab-content ">
+                <div class="code-header">
+                    <span class="file-name">📄 <a href="Q11_Socket_Programming_Model.txt" target="_blank">Q11_Socket_Programming_Model.txt</a></span>
+                    <div class="code-actions">
+                        <button class="action-btn copy-btn" onclick="copySnippet('q11_content_2_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q11_Socket_Programming_Model.txt" download class="action-btn download-btn">⬇ Download</a>
+                    </div>
+                </div>
+                <pre class="code-block"><code id="q11_content_2_code" class="language-none">================================================================================
+IT302 - DATA COMMUNICATION AND COMPUTER NETWORKS LAB
+QUESTION 11: STUDY AND IMPLEMENTATION OF SOCKET PROGRAMMING &amp; CLIENT-SERVER MODEL
+================================================================================
+
+11.1 INTRODUCTION TO SOCKET PROGRAMMING
+----------------------------------------
+A socket is an endpoint for bidirectional, inter-process communication (IPC) across an 
+IP network. A network socket is bound to a combination of an **IP Address** and a **Port Number** 
+(e.g., `127.0.0.1:8080`).
+
+Sockets operate in two primary modes:
+1. **Stream Sockets (`SOCK_STREAM`)**: Based on TCP (Transmission Control Protocol). Connection-oriented, 
+   reliable, ordered, and error-checked byte stream delivery.
+2. **Datagram Sockets (`SOCK_DGRAM`)**: Based on UDP (User Datagram Protocol). Connectionless, 
+   unreliable, minimal overhead, message-boundary preserving.
+
+
+11.2 TCP CLIENT-SERVER ARCHITECTURE WORKFLOW
+---------------------------------------------
+
+         SERVER                                          CLIENT
+   ------------------                             -------------------
+     socket()                                           socket()
+        |                                                  |
+      bind()                                               |
+        |                                                  |
+     listen()                                              |
+        |                                                  |
+     accept()  &lt;---------- [SYN: Connection Request] ---- connect()
+        |     ---------- [SYN-ACK: Acknowledgment] -------&gt;|
+        |     &lt;---------- [ACK: Connection Established] ---|
+        |                                                  |
+     recv()    &lt;---------- [Data Request] ----------------- send()
+        |                                                  |
+     send()    ---------- [Data Response] ----------------&gt; recv()
+        |                                                  |
+     close()   &lt;---------- [FIN / Close] ------------------ close()
+
+
+11.3 CORE SOCKET SYSTEM CALL PRIMITIVES (C API)
+------------------------------------------------
+1. `socket(int domain, int type, int protocol)`:
+   - Creates an unbound network socket descriptor.
+   - Example: `int fd = socket(AF_INET, SOCK_STREAM, 0);` (IPv4, TCP).
+
+2. `bind(int sockfd, const struct sockaddr *addr, socklen_t addrlen)`:
+   - Assigns a local IP address and port number to the socket.
+   - Used by servers to listen on a well-known port.
+
+3. `listen(int sockfd, int backlog)`:
+   - Marks the socket as passive (ready to accept incoming client connections).
+   - `backlog`: Maximum number of pending connections queued.
+
+4. `accept(int sockfd, struct sockaddr *addr, socklen_t *addrlen)`:
+   - Blocks until an incoming connection arrives.
+   - Extracts first connection from queue and returns a NEW active connected socket descriptor.
+
+5. `connect(int sockfd, const struct sockaddr *addr, socklen_t addrlen)`:
+   - Invoked by the client to initiate the 3-Way TCP handshake with the server.
+
+6. `send()` / `recv()` (or `write()` / `read()`):
+   - Transmits and receives data buffers over the established TCP byte stream.
+
+7. `close()` (or `closesocket()` on Windows):
+   - Terminates socket connection and releases OS descriptor resources.
+
+
+11.4 SOURCE CODE IMPLEMENTATION
+--------------------------------
+The corresponding C source code files are provided:
+- `Q11_1_Socket_Server.c`: Standalone TCP Server that listens on port 8080 and replies to client.
+- `Q11_2_Socket_Client.c`: Standalone TCP Client that connects to 127.0.0.1:8080 and exchanges data.
+Both files include cross-platform support (Linux POSIX &amp; Windows Winsock).
+================================================================================
+
+</code></pre>
+            </div>
+            
             </div>
         </section>
         
@@ -2571,11 +2788,16 @@ int main(void) {
                     <span class="badge badge-c">C Code (2 Parts)</span>
                     <h2 class="card-title">Q12: HTTP Sockets: Web Page Upload &amp; Download</h2>
                 </div>
-                <a href="#q12" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q12', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q12" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>12. Create a socket for HTTP for web page upload and download.</p>
             </div>
 
@@ -2583,11 +2805,11 @@ int main(void) {
                 <div class="tab-buttons-bar">
                     
             <button class="tab-btn active" onclick="switchTab('q12', 0)">
-                12.1 HTTP GET Web Page Downloader
+                12.1 HTTP GET Download
             </button>
             
             <button class="tab-btn " onclick="switchTab('q12', 1)">
-                12.2 HTTP POST Web Page / Data Uploader
+                12.2 HTTP POST Upload
             </button>
             
                 </div>
@@ -2596,8 +2818,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q12_1_HTTP_Download.c" target="_blank">Q12_1_HTTP_Download.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q12_content_0_code')">📋 Copy</button>
-                        <a href="Q12_1_HTTP_Download.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q12_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q12_1_HTTP_Download.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q12_content_0_code" class="language-c">/*
@@ -2714,8 +2938,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q12_2_HTTP_Upload.c" target="_blank">Q12_2_HTTP_Upload.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q12_content_1_code')">📋 Copy</button>
-                        <a href="Q12_2_HTTP_Upload.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q12_content_1_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q12_2_HTTP_Upload.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q12_content_1_code" class="language-c">/*
@@ -2838,11 +3064,16 @@ int main(void) {
                     <span class="badge badge-c">C Code (2 Parts)</span>
                     <h2 class="card-title">Q13: Simulation of PING &amp; TRACEROUTE Commands</h2>
                 </div>
-                <a href="#q13" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q13', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q13" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>13. Write a code simulating PING and TRACEROUTE commands.</p>
             </div>
 
@@ -2850,11 +3081,11 @@ int main(void) {
                 <div class="tab-buttons-bar">
                     
             <button class="tab-btn active" onclick="switchTab('q13', 0)">
-                13.1 PING Command Simulator
+                13.1 PING Simulator
             </button>
             
             <button class="tab-btn " onclick="switchTab('q13', 1)">
-                13.2 TRACEROUTE Command Simulator
+                13.2 TRACEROUTE Simulator
             </button>
             
                 </div>
@@ -2863,8 +3094,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q13_1_Ping_Simulation.c" target="_blank">Q13_1_Ping_Simulation.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q13_content_0_code')">📋 Copy</button>
-                        <a href="Q13_1_Ping_Simulation.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q13_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q13_1_Ping_Simulation.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q13_content_0_code" class="language-c">/*
@@ -2949,8 +3182,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q13_2_Traceroute_Simulation.c" target="_blank">Q13_2_Traceroute_Simulation.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q13_content_1_code')">📋 Copy</button>
-                        <a href="Q13_2_Traceroute_Simulation.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q13_content_1_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q13_2_Traceroute_Simulation.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q13_content_1_code" class="language-c">/*
@@ -3047,11 +3282,16 @@ int main(void) {
                     <span class="badge badge-c">C Code</span>
                     <h2 class="card-title">Q14: DHCP Server Simulation (DORA)</h2>
                 </div>
-                <a href="#q14" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q14', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q14" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>14. Write a code simulating DHCP server.</p>
             </div>
 
@@ -3059,7 +3299,7 @@ int main(void) {
                 <div class="tab-buttons-bar">
                     
             <button class="tab-btn active" onclick="switchTab('q14', 0)">
-                DHCP Server Simulation (Discover, Offer, Request, Ack)
+                DHCP Server Simulator (DORA)
             </button>
             
                 </div>
@@ -3068,8 +3308,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q14_DHCP_Server_Simulation.c" target="_blank">Q14_DHCP_Server_Simulation.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q14_content_0_code')">📋 Copy</button>
-                        <a href="Q14_DHCP_Server_Simulation.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q14_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q14_DHCP_Server_Simulation.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q14_content_0_code" class="language-c">/*
@@ -3225,11 +3467,16 @@ int main(void) {
                     <span class="badge badge-c">C Code (2 Algorithms)</span>
                     <h2 class="card-title">Q15: Routing Table Implementation</h2>
                 </div>
-                <a href="#q15" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('q15', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#q15" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>15. Implement the routing table using:<br> a) Dijkstra&#x27;s algorithm.<br> b) Distance vector Routing algorithm.</p>
             </div>
 
@@ -3237,11 +3484,11 @@ int main(void) {
                 <div class="tab-buttons-bar">
                     
             <button class="tab-btn active" onclick="switchTab('q15', 0)">
-                15.1 Dijkstra&#x27;s Shortest Path Routing (OSPF)
+                15.1 Dijkstra (OSPF)
             </button>
             
             <button class="tab-btn " onclick="switchTab('q15', 1)">
-                15.2 Distance Vector Routing (Bellman-Ford / RIP)
+                15.2 Distance Vector (RIP)
             </button>
             
                 </div>
@@ -3250,8 +3497,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q15_1_Dijkstra_Routing.c" target="_blank">Q15_1_Dijkstra_Routing.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q15_content_0_code')">📋 Copy</button>
-                        <a href="Q15_1_Dijkstra_Routing.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q15_content_0_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q15_1_Dijkstra_Routing.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q15_content_0_code" class="language-c">/*
@@ -3349,8 +3598,10 @@ int main(void) {
                 <div class="code-header">
                     <span class="file-name">📄 <a href="Q15_2_Distance_Vector_Routing.c" target="_blank">Q15_2_Distance_Vector_Routing.c</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('q15_content_1_code')">📋 Copy</button>
-                        <a href="Q15_2_Distance_Vector_Routing.c" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('q15_content_1_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="Q15_2_Distance_Vector_Routing.c" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="q15_content_1_code" class="language-c">/*
@@ -3443,13 +3694,16 @@ int main(void) {
         </div>
     </main>
 
-    <div id="toast">Copied to clipboard!</div>
+    <div id="toast">
+        <span>✓</span> <span id="toast-text">Copied to clipboard!</span>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
     <script>
         function switchTab(sectionId, tabIndex) {
             const card = document.getElementById(sectionId);
+            if (!card) return;
             const buttons = card.querySelectorAll('.tab-btn');
             const contents = card.querySelectorAll('.tab-content');
 
@@ -3462,24 +3716,72 @@ int main(void) {
             });
         }
 
-        function copyToClipboard(elementId) {
+        // Copy currently active tab solution
+        function copyActiveSolution(sectionId, buttonEl) {
+            const card = document.getElementById(sectionId);
+            if (!card) return;
+            const activeContent = card.querySelector('.tab-content.active code') || card.querySelector('code');
+            if (!activeContent) return;
+
+            copyText(activeContent.innerText, buttonEl, "✓ Solution Copied!");
+        }
+
+        // Copy individual snippet from tab code header
+        function copySnippet(elementId, buttonEl) {
             const codeEl = document.getElementById(elementId);
             if (!codeEl) return;
-            const text = codeEl.innerText;
-            navigator.clipboard.writeText(text).then(() => {
-                showToast("Code copied to clipboard!");
-            }).catch(() => {
+            copyText(codeEl.innerText, buttonEl, "✓ Code Copied!");
+        }
+
+        function copyText(text, buttonEl, successMsg) {
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => {
+                    triggerSuccessUI(buttonEl, successMsg);
+                }).catch(() => {
+                    fallbackCopy(text, buttonEl, successMsg);
+                });
+            } else {
+                fallbackCopy(text, buttonEl, successMsg);
+            }
+        }
+
+        function fallbackCopy(text, buttonEl, successMsg) {
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try {
+                document.execCommand('copy');
+                triggerSuccessUI(buttonEl, successMsg);
+            } catch (e) {
                 showToast("Failed to copy!");
-            });
+            }
+            document.body.removeChild(ta);
+        }
+
+        function triggerSuccessUI(buttonEl, message) {
+            showToast(message);
+            if (buttonEl) {
+                const originalText = buttonEl.innerHTML;
+                buttonEl.innerHTML = "✓ Copied!";
+                buttonEl.classList.add('copied');
+                setTimeout(() => {
+                    buttonEl.innerHTML = originalText;
+                    buttonEl.classList.remove('copied');
+                }, 2000);
+            }
         }
 
         function showToast(msg) {
             const toast = document.getElementById('toast');
-            toast.innerText = msg;
+            const toastText = document.getElementById('toast-text');
+            if (toastText) toastText.innerText = msg;
             toast.classList.add('show');
             setTimeout(() => {
                 toast.classList.remove('show');
-            }, 2000);
+            }, 2200);
         }
 
         function filterQuestions() {

@@ -29,10 +29,10 @@ SECTIONS = [
         "unit": "Unit 1: Network Topology & Commands",
         "question": "3. \"Ping\" is a tool used to determine if a server is responding and to estimate the round trip time of a message sent to that server. Use the ping command for the following URLs and record the success or failure statistics along with the average round trip time:\n a) google.com   b) facebook.com   c) bitmesra.ac.in",
         "files": [
-            {"name": "Q3_Ping_Statistics.txt", "type": "txt", "title": "Consolidated Ping Statistics & Comparison"},
-            {"name": "Q3_1_Ping_Google.txt", "type": "txt", "title": "3.1 Ping google.com"},
-            {"name": "Q3_2_Ping_Facebook.txt", "type": "txt", "title": "3.2 Ping facebook.com"},
-            {"name": "Q3_3_Ping_BitMesra.txt", "type": "txt", "title": "3.3 Ping bitmesra.ac.in"}
+            {"name": "Q3_Ping_Statistics.txt", "type": "txt", "title": "All Ping Statistics"},
+            {"name": "Q3_1_Ping_Google.txt", "type": "txt", "title": "3.1 google.com"},
+            {"name": "Q3_2_Ping_Facebook.txt", "type": "txt", "title": "3.2 facebook.com"},
+            {"name": "Q3_3_Ping_BitMesra.txt", "type": "txt", "title": "3.3 bitmesra.ac.in"}
         ]
     },
     {
@@ -42,10 +42,10 @@ SECTIONS = [
         "unit": "Unit 1: Network Topology & Commands",
         "question": "4. Trace the route that is taken when you try to access:\n a) google.com   b) facebook.com   c) bitmesra.ac.in",
         "files": [
-            {"name": "Q4_Trace_Route.txt", "type": "txt", "title": "Consolidated Traceroute Path Analysis"},
-            {"name": "Q4_1_Trace_Google.txt", "type": "txt", "title": "4.1 Trace Route google.com"},
-            {"name": "Q4_2_Trace_Facebook.txt", "type": "txt", "title": "4.2 Trace Route facebook.com"},
-            {"name": "Q4_3_Trace_BitMesra.txt", "type": "txt", "title": "4.3 Trace Route bitmesra.ac.in"}
+            {"name": "Q4_Trace_Route.txt", "type": "txt", "title": "All Route Traces"},
+            {"name": "Q4_1_Trace_Google.txt", "type": "txt", "title": "4.1 google.com"},
+            {"name": "Q4_2_Trace_Facebook.txt", "type": "txt", "title": "4.2 facebook.com"},
+            {"name": "Q4_3_Trace_BitMesra.txt", "type": "txt", "title": "4.3 bitmesra.ac.in"}
         ]
     },
     {
@@ -95,10 +95,10 @@ SECTIONS = [
         "unit": "Unit 4: Error Detection & Correction",
         "question": "9. Write a C/C++ program to perform error detection method using:\n - Single parity checking method\n - Two dimension parity checking method\n - Cyclic redundancy check (CRC) method\n - Internet checksum method",
         "files": [
-            {"name": "Q9_1_Single_Parity.c", "type": "c", "title": "9.1 Single Parity Check (Even / Odd)"},
-            {"name": "Q9_2_Two_Dimension_Parity.c", "type": "c", "title": "9.2 Two-Dimensional Parity Check (LRC & VRC)"},
-            {"name": "Q9_3_CRC.c", "type": "c", "title": "9.3 Cyclic Redundancy Check (Modulo-2 XOR)"},
-            {"name": "Q9_4_Internet_Checksum.c", "type": "c", "title": "9.4 Internet Checksum (RFC 1071)"}
+            {"name": "Q9_1_Single_Parity.c", "type": "c", "title": "9.1 Single Parity"},
+            {"name": "Q9_2_Two_Dimension_Parity.c", "type": "c", "title": "9.2 2D Parity (LRC)"},
+            {"name": "Q9_3_CRC.c", "type": "c", "title": "9.3 CRC (Modulo-2 XOR)"},
+            {"name": "Q9_4_Internet_Checksum.c", "type": "c", "title": "9.4 Internet Checksum"}
         ]
     },
     {
@@ -118,9 +118,9 @@ SECTIONS = [
         "unit": "Unit 5: Socket Programming & HTTP",
         "question": "11. Study and implement model for Socket Programming and Client - Server model.",
         "files": [
-            {"name": "Q11_Socket_Programming_Model.txt", "type": "txt", "title": "Socket Programming Lifecycle & Theory"},
-            {"name": "Q11_1_Socket_Server.c", "type": "c", "title": "11.1 TCP Socket Server (Cross-platform)"},
-            {"name": "Q11_2_Socket_Client.c", "type": "c", "title": "11.2 TCP Socket Client (Cross-platform)"}
+            {"name": "Q11_1_Socket_Server.c", "type": "c", "title": "11.1 TCP Server"},
+            {"name": "Q11_2_Socket_Client.c", "type": "c", "title": "11.2 TCP Client"},
+            {"name": "Q11_Socket_Programming_Model.txt", "type": "txt", "title": "Socket Theory & Architecture"}
         ]
     },
     {
@@ -130,8 +130,8 @@ SECTIONS = [
         "unit": "Unit 5: Socket Programming & HTTP",
         "question": "12. Create a socket for HTTP for web page upload and download.",
         "files": [
-            {"name": "Q12_1_HTTP_Download.c", "type": "c", "title": "12.1 HTTP GET Web Page Downloader"},
-            {"name": "Q12_2_HTTP_Upload.c", "type": "c", "title": "12.2 HTTP POST Web Page / Data Uploader"}
+            {"name": "Q12_1_HTTP_Download.c", "type": "c", "title": "12.1 HTTP GET Download"},
+            {"name": "Q12_2_HTTP_Upload.c", "type": "c", "title": "12.2 HTTP POST Upload"}
         ]
     },
     {
@@ -141,8 +141,8 @@ SECTIONS = [
         "unit": "Unit 6: Protocol Simulations",
         "question": "13. Write a code simulating PING and TRACEROUTE commands.",
         "files": [
-            {"name": "Q13_1_Ping_Simulation.c", "type": "c", "title": "13.1 PING Command Simulator"},
-            {"name": "Q13_2_Traceroute_Simulation.c", "type": "c", "title": "13.2 TRACEROUTE Command Simulator"}
+            {"name": "Q13_1_Ping_Simulation.c", "type": "c", "title": "13.1 PING Simulator"},
+            {"name": "Q13_2_Traceroute_Simulation.c", "type": "c", "title": "13.2 TRACEROUTE Simulator"}
         ]
     },
     {
@@ -152,7 +152,7 @@ SECTIONS = [
         "unit": "Unit 6: Protocol Simulations",
         "question": "14. Write a code simulating DHCP server.",
         "files": [
-            {"name": "Q14_DHCP_Server_Simulation.c", "type": "c", "title": "DHCP Server Simulation (Discover, Offer, Request, Ack)"}
+            {"name": "Q14_DHCP_Server_Simulation.c", "type": "c", "title": "DHCP Server Simulator (DORA)"}
         ]
     },
     {
@@ -162,8 +162,8 @@ SECTIONS = [
         "unit": "Unit 7: Routing Algorithms",
         "question": "15. Implement the routing table using:\n a) Dijkstra's algorithm.\n b) Distance vector Routing algorithm.",
         "files": [
-            {"name": "Q15_1_Dijkstra_Routing.c", "type": "c", "title": "15.1 Dijkstra's Shortest Path Routing (OSPF)"},
-            {"name": "Q15_2_Distance_Vector_Routing.c", "type": "c", "title": "15.2 Distance Vector Routing (Bellman-Ford / RIP)"}
+            {"name": "Q15_1_Dijkstra_Routing.c", "type": "c", "title": "15.1 Dijkstra (OSPF)"},
+            {"name": "Q15_2_Distance_Vector_Routing.c", "type": "c", "title": "15.2 Distance Vector (RIP)"}
         ]
     }
 ]
@@ -184,9 +184,11 @@ def generate_html():
             current_unit = s["unit"]
             sidebar_items_html += f'<div class="unit-header">{html.escape(current_unit)}</div>\n'
         
+        badge_type = s["files"][0]["type"].upper()
+
         sidebar_items_html += f'''
         <a href="#{s["id"]}" class="nav-item" onclick="highlightNav(this)">
-            <span class="nav-tag">{s["id"].upper()}</span>
+            <span class="nav-tag nav-tag-{s["files"][0]["type"]}">{badge_type}</span>
             <span class="nav-title">{html.escape(s["tag"])}</span>
         </a>
         '''
@@ -201,9 +203,7 @@ def generate_html():
             fcontent = read_file_content(fname)
             escaped_code = html.escape(fcontent)
             is_active = "active" if idx == 0 else ""
-            tab_id = f"{s['id']}_tab_{idx}"
             content_id = f"{s['id']}_content_{idx}"
-
             lang_class = "language-c" if ftype == "c" else "language-none"
 
             files_tabs_html += f'''
@@ -217,8 +217,10 @@ def generate_html():
                 <div class="code-header">
                     <span class="file-name">📄 <a href="{fname}" target="_blank">{html.escape(fname)}</a></span>
                     <div class="code-actions">
-                        <button class="copy-btn" onclick="copyToClipboard('{content_id}_code')">📋 Copy</button>
-                        <a href="{fname}" download class="download-btn">⬇ Download</a>
+                        <button class="action-btn copy-btn" onclick="copySnippet('{content_id}_code', this)">
+                            📋 Copy Code
+                        </button>
+                        <a href="{fname}" download class="action-btn download-btn">⬇ Download</a>
                     </div>
                 </div>
                 <pre class="code-block"><code id="{content_id}_code" class="{lang_class}">{escaped_code}</code></pre>
@@ -234,11 +236,16 @@ def generate_html():
                     <span class="badge badge-{s["files"][0]["type"]}">{html.escape(s["badge"])}</span>
                     <h2 class="card-title">{html.escape(s["tag"])}</h2>
                 </div>
-                <a href="#{s["id"]}" class="anchor-link" title="Direct link">🔗</a>
+                <div class="header-actions">
+                    <button class="main-copy-btn" onclick="copyActiveSolution('{s["id"]}', this)">
+                        <span class="copy-icon">📋</span> Copy Solution
+                    </button>
+                    <a href="#{s["id"]}" class="anchor-link" title="Direct link to this question">🔗</a>
+                </div>
             </div>
             
             <div class="problem-box">
-                <strong>Problem Statement:</strong>
+                <span class="problem-label">Assignment Question:</span>
                 <p>{escaped_q}</p>
             </div>
 
@@ -256,26 +263,29 @@ def generate_html():
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>IT302 - DCCN Lab Assignment Solutions & Source Code</title>
-    <meta name="description" content="Complete C programs and empirical reports for IT302 Data Communication and Computer Networks Lab Assignment.">
+    <title>IT302 DCCN Lab Assignment Solutions & Source Code</title>
+    <meta name="description" content="Clean C programs and empirical reports for IT302 Data Communication and Computer Networks Lab Assignment.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
     <style>
         :root {{
-            --bg-color: #0f172a;
-            --surface-color: #1e293b;
-            --surface-hover: #334155;
-            --border-color: #334155;
+            --bg-color: #090d16;
+            --surface-color: #131b2e;
+            --surface-card: #182238;
+            --surface-hover: #22304e;
+            --border-color: #273656;
+            --border-accent: #3b82f6;
             --text-primary: #f8fafc;
             --text-secondary: #94a3b8;
+            --text-muted: #64748b;
             --accent-blue: #38bdf8;
-            --accent-green: #4ade80;
+            --accent-green: #22c55e;
             --accent-purple: #c084fc;
-            --accent-amber: #fbbf24;
-            --code-bg: #090d16;
-            --sidebar-width: 320px;
+            --accent-amber: #f59e0b;
+            --code-bg: #070b12;
+            --sidebar-width: 290px;
         }}
 
         * {{
@@ -284,51 +294,84 @@ def generate_html():
             padding: 0;
         }}
 
+        html {{
+            scroll-behavior: smooth;
+            width: 100%;
+            overflow-x: hidden;
+        }}
+
         body {{
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background-color: var(--bg-color);
             color: var(--text-primary);
             line-height: 1.6;
-            display: flex;
+            display: grid;
+            grid-template-columns: var(--sidebar-width) minmax(0, 1fr);
             min-height: 100vh;
+            width: 100%;
+            max-width: 100vw;
+            overflow-x: hidden;
+        }}
+
+        /* Custom Modern Scrollbars - Sleek & Dark */
+        ::-webkit-scrollbar {{
+            width: 6px;
+            height: 6px;
+        }}
+        ::-webkit-scrollbar-track {{
+            background: #090d16;
+        }}
+        ::-webkit-scrollbar-thumb {{
+            background: #273656;
+            border-radius: 4px;
+        }}
+        ::-webkit-scrollbar-thumb:hover {{
+            background: #38bdf8;
+        }}
+        * {{
+            scrollbar-width: thin;
+            scrollbar-color: #273656 #090d16;
         }}
 
         /* Sidebar Styling */
         #sidebar {{
-            width: var(--sidebar-width);
-            height: 100vh;
             background-color: var(--surface-color);
             border-right: 1px solid var(--border-color);
-            position: fixed;
+            height: 100vh;
+            position: sticky;
             top: 0;
-            left: 0;
             overflow-y: auto;
+            overflow-x: hidden;
             display: flex;
             flex-direction: column;
-            z-index: 100;
+            z-index: 50;
         }}
 
         .sidebar-header {{
-            padding: 20px;
+            padding: 20px 16px 14px;
             border-bottom: 1px solid var(--border-color);
-            background: linear-gradient(180deg, rgba(30,41,59,1) 0%, rgba(15,23,42,0.8) 100%);
+            background: #0d1424;
         }}
 
         .sidebar-title {{
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             font-weight: 700;
             color: var(--accent-blue);
-            margin-bottom: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }}
 
         .sidebar-subtitle {{
-            font-size: 0.8rem;
-            color: var(--text-secondary);
+            font-size: 0.75rem;
+            color: var(--text-muted);
+            margin-top: 2px;
         }}
 
         .search-box {{
-            padding: 12px 16px;
+            padding: 10px 14px;
             border-bottom: 1px solid var(--border-color);
+            background: #0d1424;
         }}
 
         .search-input {{
@@ -338,8 +381,9 @@ def generate_html():
             border: 1px solid var(--border-color);
             border-radius: 6px;
             color: var(--text-primary);
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             outline: none;
+            transition: border-color 0.2s;
         }}
 
         .search-input:focus {{
@@ -348,14 +392,14 @@ def generate_html():
 
         .nav-list {{
             flex: 1;
-            padding: 10px 0;
+            padding: 8px 0 24px;
         }}
 
         .unit-header {{
-            padding: 12px 16px 6px;
-            font-size: 0.72rem;
+            padding: 14px 14px 4px;
+            font-size: 0.68rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.08em;
             font-weight: 700;
             color: var(--accent-amber);
         }}
@@ -363,13 +407,16 @@ def generate_html():
         .nav-item {{
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 8px 16px;
+            gap: 8px;
+            padding: 7px 14px;
             color: var(--text-secondary);
             text-decoration: none;
-            font-size: 0.82rem;
+            font-size: 0.8rem;
             transition: all 0.15s ease;
             border-left: 3px solid transparent;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }}
 
         .nav-item:hover, .nav-item.active {{
@@ -379,63 +426,62 @@ def generate_html():
         }}
 
         .nav-tag {{
-            font-family: 'Fira Code', monospace;
+            font-family: 'JetBrains Mono', monospace;
             font-weight: 600;
-            font-size: 0.75rem;
-            color: var(--accent-blue);
-            background: rgba(56, 189, 248, 0.1);
-            padding: 2px 6px;
+            font-size: 0.65rem;
+            padding: 2px 5px;
             border-radius: 4px;
-            white-space: nowrap;
+            flex-shrink: 0;
+        }}
+
+        .nav-tag-c {{
+            background: rgba(34, 197, 94, 0.15);
+            color: var(--accent-green);
+            border: 1px solid rgba(34, 197, 94, 0.3);
+        }}
+
+        .nav-tag-txt {{
+            background: rgba(192, 132, 252, 0.15);
+            color: var(--accent-purple);
+            border: 1px solid rgba(192, 132, 252, 0.3);
         }}
 
         .nav-title {{
-            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+            white-space: nowrap;
         }}
 
-        /* Main Content Styling */
+        /* Main Content Layout */
         #main {{
-            margin-left: var(--sidebar-width);
-            flex: 1;
-            padding: 36px 48px;
-            max-width: 1200px;
+            min-width: 0;
+            width: 100%;
+            padding: 28px 36px 64px;
+            overflow-x: hidden;
         }}
 
         .hero-banner {{
-            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            background: linear-gradient(135deg, #131b2e 0%, #0d1424 100%);
             border: 1px solid var(--border-color);
             border-radius: 12px;
-            padding: 32px;
-            margin-bottom: 36px;
+            padding: 28px 32px;
+            margin-bottom: 32px;
             position: relative;
-            overflow: hidden;
-        }}
-
-        .hero-banner::before {{
-            content: '';
-            position: absolute;
-            top: -50px;
-            right: -50px;
-            width: 200px;
-            height: 200px;
-            background: radial-gradient(circle, rgba(56,189,248,0.15) 0%, transparent 70%);
-            border-radius: 50%;
         }}
 
         .hero-title {{
-            font-size: 1.85rem;
+            font-size: 1.7rem;
             font-weight: 800;
             color: #ffffff;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
+            letter-spacing: -0.02em;
         }}
 
         .hero-desc {{
             color: var(--text-secondary);
-            font-size: 1rem;
-            max-width: 800px;
+            font-size: 0.95rem;
             margin-bottom: 20px;
+            max-width: 900px;
         }}
 
         .hero-buttons {{
@@ -448,9 +494,9 @@ def generate_html():
             display: inline-flex;
             align-items: center;
             gap: 8px;
-            padding: 9px 16px;
+            padding: 8px 16px;
             border-radius: 6px;
-            font-size: 0.88rem;
+            font-size: 0.85rem;
             font-weight: 600;
             text-decoration: none;
             transition: all 0.2s;
@@ -460,7 +506,7 @@ def generate_html():
 
         .btn-primary {{
             background-color: var(--accent-blue);
-            color: #0f172a;
+            color: #090d16;
         }}
 
         .btn-primary:hover {{
@@ -469,7 +515,7 @@ def generate_html():
         }}
 
         .btn-secondary {{
-            background-color: var(--surface-color);
+            background-color: var(--surface-card);
             border-color: var(--border-color);
             color: var(--text-primary);
         }}
@@ -480,63 +526,59 @@ def generate_html():
 
         /* Question Cards */
         .question-card {{
-            background-color: var(--surface-color);
+            background-color: var(--surface-card);
             border: 1px solid var(--border-color);
             border-radius: 12px;
             padding: 24px;
-            margin-bottom: 36px;
+            margin-bottom: 32px;
             scroll-margin-top: 24px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            min-width: 0;
+            max-width: 100%;
         }}
 
         .card-header {{
             display: flex;
             justify-content: space-between;
-            align-items: flex-start;
+            align-items: center;
+            gap: 16px;
             margin-bottom: 16px;
             border-bottom: 1px solid rgba(255,255,255,0.06);
             padding-bottom: 14px;
+            flex-wrap: wrap;
         }}
 
         .card-title-group {{
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
             flex-wrap: wrap;
+            min-width: 0;
+            flex: 1;
         }}
 
         .card-title {{
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             font-weight: 700;
             color: #ffffff;
-        }}
-
-        .anchor-link {{
-            color: var(--text-secondary);
-            text-decoration: none;
-            font-size: 1.1rem;
-            opacity: 0.6;
-            transition: opacity 0.2s;
-        }}
-
-        .anchor-link:hover {{
-            opacity: 1;
-            color: var(--accent-blue);
+            letter-spacing: -0.01em;
+            word-break: break-word;
         }}
 
         .badge {{
-            font-size: 0.72rem;
+            font-size: 0.7rem;
             font-weight: 700;
             padding: 3px 8px;
             border-radius: 9999px;
             text-transform: uppercase;
             letter-spacing: 0.04em;
+            flex-shrink: 0;
         }}
 
         .badge-c {{
-            background: rgba(74, 222, 128, 0.15);
+            background: rgba(34, 197, 94, 0.15);
             color: var(--accent-green);
-            border: 1px solid rgba(74, 222, 128, 0.3);
+            border: 1px solid rgba(34, 197, 94, 0.3);
         }}
 
         .badge-txt {{
@@ -545,21 +587,69 @@ def generate_html():
             border: 1px solid rgba(192, 132, 252, 0.3);
         }}
 
+        .header-actions {{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }}
+
+        /* Prominent Main Copy Button */
+        .main-copy-btn {{
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: linear-gradient(135deg, #2563eb, #1d4ed8);
+            color: #ffffff;
+            border: 1px solid #3b82f6;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 2px 8px rgba(37, 99, 235, 0.3);
+        }}
+
+        .main-copy-btn:hover {{
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
+        }}
+
+        .main-copy-btn.copied {{
+            background: linear-gradient(135deg, #16a34a, #15803d) !important;
+            border-color: #22c55e !important;
+            box-shadow: 0 2px 10px rgba(34, 197, 94, 0.4) !important;
+        }}
+
+        .anchor-link {{
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 1.1rem;
+            transition: color 0.2s;
+        }}
+
+        .anchor-link:hover {{
+            color: var(--accent-blue);
+        }}
+
         .problem-box {{
-            background-color: rgba(15, 23, 42, 0.6);
+            background-color: rgba(9, 13, 22, 0.7);
             border-left: 4px solid var(--accent-blue);
             padding: 12px 16px;
             border-radius: 4px;
             margin-bottom: 18px;
-            font-size: 0.92rem;
+            font-size: 0.9rem;
             color: #cbd5e1;
+            word-break: break-word;
         }}
 
-        .problem-box strong {{
+        .problem-label {{
             color: var(--accent-blue);
-            font-size: 0.85rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.06em;
+            font-weight: 700;
             display: block;
             margin-bottom: 4px;
         }}
@@ -567,23 +657,29 @@ def generate_html():
         /* Tabs Styling */
         .tabs-container {{
             margin-top: 14px;
+            min-width: 0;
+            max-width: 100%;
         }}
 
         .tab-buttons-bar {{
             display: flex;
-            gap: 6px;
+            gap: 4px;
             overflow-x: auto;
             border-bottom: 1px solid var(--border-color);
             margin-bottom: 12px;
             padding-bottom: 2px;
+            scrollbar-width: none;
+        }}
+        .tab-buttons-bar::-webkit-scrollbar {{
+            display: none;
         }}
 
         .tab-btn {{
             background: transparent;
             border: none;
-            color: var(--text-secondary);
-            padding: 8px 14px;
-            font-size: 0.85rem;
+            color: var(--text-muted);
+            padding: 7px 14px;
+            font-size: 0.82rem;
             font-weight: 500;
             cursor: pointer;
             border-radius: 6px 6px 0 0;
@@ -606,6 +702,8 @@ def generate_html():
 
         .tab-content {{
             display: none;
+            min-width: 0;
+            max-width: 100%;
         }}
 
         .tab-content.active {{
@@ -616,19 +714,22 @@ def generate_html():
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background-color: #0b0f19;
+            background-color: #0b111e;
             padding: 8px 14px;
             border-top-left-radius: 8px;
             border-top-right-radius: 8px;
             border: 1px solid var(--border-color);
             border-bottom: none;
-            font-size: 0.8rem;
+            font-size: 0.78rem;
+            flex-wrap: wrap;
+            gap: 8px;
         }}
 
         .file-name a {{
             color: var(--accent-blue);
             text-decoration: none;
-            font-family: 'Fira Code', monospace;
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 500;
         }}
 
         .file-name a:hover {{
@@ -637,10 +738,10 @@ def generate_html():
 
         .code-actions {{
             display: flex;
-            gap: 8px;
+            gap: 6px;
         }}
 
-        .copy-btn, .download-btn {{
+        .action-btn {{
             background-color: var(--surface-hover);
             color: var(--text-primary);
             border: 1px solid var(--border-color);
@@ -649,12 +750,15 @@ def generate_html():
             font-size: 0.75rem;
             cursor: pointer;
             text-decoration: none;
-            transition: background 0.15s;
+            transition: all 0.15s;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
         }}
 
-        .copy-btn:hover, .download-btn:hover {{
-            background-color: var(--accent-blue);
-            color: #0f172a;
+        .action-btn:hover {{
+            background-color: var(--border-accent);
+            color: #ffffff;
         }}
 
         .code-block {{
@@ -665,27 +769,35 @@ def generate_html():
             padding: 16px !important;
             margin: 0 !important;
             max-height: 480px;
-            overflow-y: auto;
-            font-family: 'Fira Code', monospace !important;
-            font-size: 0.85rem !important;
+            overflow-x: auto !important;
+            overflow-y: auto !important;
+            font-family: 'JetBrains Mono', monospace !important;
+            font-size: 0.82rem !important;
+            line-height: 1.55 !important;
+            white-space: pre !important;
+            word-wrap: normal !important;
+            max-width: 100% !important;
         }}
 
-        /* Toast feedback */
+        /* Toast notification */
         #toast {{
             position: fixed;
             bottom: 24px;
             right: 24px;
-            background-color: var(--accent-green);
-            color: #052e16;
-            padding: 10px 18px;
-            border-radius: 6px;
+            background: linear-gradient(135deg, #15803d, #16a34a);
+            color: #ffffff;
+            padding: 12px 20px;
+            border-radius: 8px;
             font-weight: 600;
-            font-size: 0.85rem;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+            font-size: 0.88rem;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.5);
             transform: translateY(100px);
             opacity: 0;
-            transition: all 0.3s ease;
-            z-index: 999;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }}
 
         #toast.show {{
@@ -693,24 +805,37 @@ def generate_html():
             opacity: 1;
         }}
 
-        /* Responsive */
+        /* Mobile Responsive */
         @media (max-width: 900px) {{
+            body {{
+                grid-template-columns: 1fr;
+            }}
             #sidebar {{
                 display: none;
             }}
             #main {{
-                margin-left: 0;
+                padding: 16px;
+            }}
+            .hero-banner {{
                 padding: 20px;
+            }}
+            .card-header {{
+                flex-direction: column;
+                align-items: flex-start;
+            }}
+            .header-actions {{
+                width: 100%;
+                justify-content: space-between;
             }}
         }}
     </style>
 </head>
 <body>
 
-    <!-- Left Sidebar -->
+    <!-- Left Sticky Sidebar -->
     <nav id="sidebar">
         <div class="sidebar-header">
-            <div class="sidebar-title">IT302 DCCN LAB</div>
+            <div class="sidebar-title">⚡ IT302 DCCN LAB</div>
             <div class="sidebar-subtitle">Assignments & Source Codes</div>
         </div>
         <div class="search-box">
@@ -726,18 +851,18 @@ def generate_html():
         <header class="hero-banner">
             <h1 class="hero-title">IT302 — Data Communication & Computer Networks</h1>
             <p class="hero-desc">
-                Interactive laboratory portal containing complete C source code implementations, 
-                measured network statistics (PING, Traceroute), and study reports.
+                Laboratory assignment solutions portal with short, crisp C source code implementations, 
+                empirical networking statistics (PING, Traceroute), and study reports.
             </p>
             <div class="hero-buttons">
                 <a href="https://github.com/Aryan9891/DCCN-Lab-repo" target="_blank" class="btn btn-primary">
-                    ⭐ View on GitHub
+                    ⭐ GitHub Repository
                 </a>
                 <a href="IT302 DCCNLAB ASSIGNMENT.pdf" target="_blank" class="btn btn-secondary">
-                    📄 Original Assignment PDF
+                    📄 Assignment PDF
                 </a>
                 <a href="README.md" target="_blank" class="btn btn-secondary">
-                    📋 README & Guide
+                    📋 README Guide
                 </a>
             </div>
         </header>
@@ -747,13 +872,16 @@ def generate_html():
         </div>
     </main>
 
-    <div id="toast">Copied to clipboard!</div>
+    <div id="toast">
+        <span>✓</span> <span id="toast-text">Copied to clipboard!</span>
+    </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-c.min.js"></script>
     <script>
         function switchTab(sectionId, tabIndex) {{
             const card = document.getElementById(sectionId);
+            if (!card) return;
             const buttons = card.querySelectorAll('.tab-btn');
             const contents = card.querySelectorAll('.tab-content');
 
@@ -766,24 +894,72 @@ def generate_html():
             }});
         }}
 
-        function copyToClipboard(elementId) {{
+        // Copy currently active tab solution
+        function copyActiveSolution(sectionId, buttonEl) {{
+            const card = document.getElementById(sectionId);
+            if (!card) return;
+            const activeContent = card.querySelector('.tab-content.active code') || card.querySelector('code');
+            if (!activeContent) return;
+
+            copyText(activeContent.innerText, buttonEl, "✓ Solution Copied!");
+        }}
+
+        // Copy individual snippet from tab code header
+        function copySnippet(elementId, buttonEl) {{
             const codeEl = document.getElementById(elementId);
             if (!codeEl) return;
-            const text = codeEl.innerText;
-            navigator.clipboard.writeText(text).then(() => {{
-                showToast("Code copied to clipboard!");
-            }}).catch(() => {{
+            copyText(codeEl.innerText, buttonEl, "✓ Code Copied!");
+        }}
+
+        function copyText(text, buttonEl, successMsg) {{
+            if (navigator.clipboard && navigator.clipboard.writeText) {{
+                navigator.clipboard.writeText(text).then(() => {{
+                    triggerSuccessUI(buttonEl, successMsg);
+                }}).catch(() => {{
+                    fallbackCopy(text, buttonEl, successMsg);
+                }});
+            }} else {{
+                fallbackCopy(text, buttonEl, successMsg);
+            }}
+        }}
+
+        function fallbackCopy(text, buttonEl, successMsg) {{
+            const ta = document.createElement('textarea');
+            ta.value = text;
+            ta.style.position = 'fixed';
+            ta.style.left = '-9999px';
+            document.body.appendChild(ta);
+            ta.select();
+            try {{
+                document.execCommand('copy');
+                triggerSuccessUI(buttonEl, successMsg);
+            }} catch (e) {{
                 showToast("Failed to copy!");
-            }});
+            }}
+            document.body.removeChild(ta);
+        }}
+
+        function triggerSuccessUI(buttonEl, message) {{
+            showToast(message);
+            if (buttonEl) {{
+                const originalText = buttonEl.innerHTML;
+                buttonEl.innerHTML = "✓ Copied!";
+                buttonEl.classList.add('copied');
+                setTimeout(() => {{
+                    buttonEl.innerHTML = originalText;
+                    buttonEl.classList.remove('copied');
+                }}, 2000);
+            }}
         }}
 
         function showToast(msg) {{
             const toast = document.getElementById('toast');
-            toast.innerText = msg;
+            const toastText = document.getElementById('toast-text');
+            if (toastText) toastText.innerText = msg;
             toast.classList.add('show');
             setTimeout(() => {{
                 toast.classList.remove('show');
-            }}, 2000);
+            }}, 2200);
         }}
 
         function filterQuestions() {{
@@ -812,7 +988,7 @@ def generate_html():
 '''
     with open("index.html", "w", encoding="utf-8") as f:
         f.write(full_html)
-    print("index.html generated successfully!")
+    print("index.html regenerated with clean responsive CSS and prominent copy buttons!")
 
 if __name__ == "__main__":
     generate_html()
